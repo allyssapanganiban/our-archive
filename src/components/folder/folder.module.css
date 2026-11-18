@@ -1,0 +1,27 @@
+.folder { display: block; text-decoration: none; color: inherit; }
+.folder:hover { color: inherit; }
+.body { position: relative; width: 100%; aspect-ratio: 4 / 3.05; }
+.back { position: absolute; left: 0; right: 0; top: 24px; bottom: 0; border-radius: 6px; box-shadow: var(--shadow-rest); }
+.tab {
+  position: absolute; top: 0; width: 42%; height: 34px; border-radius: 9px 9px 0 0; display: flex; align-items: flex-start; padding: 2px 14px 0; gap: 8px;
+  transition: translate var(--t-base) var(--ease-out);
+}
+.folder:hover .tab, .folder:focus-visible .tab { translate: 0 -5px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 10px; flex: none; box-shadow: 0 0 0 2px rgba(253,251,246,.7); }
+.tabLabel { font-family: var(--font-hand), cursive; font-weight: 600; line-height: 1.2; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sheet1, .sheet2 { position: absolute; box-shadow: 0 1px 3px rgba(0,0,0,.12); transition: translate var(--t-base) var(--ease-out); }
+.sheet1 { left: 5%; right: 7%; top: 30px; height: 55%; background: var(--paper); transform: rotate(-2deg); }
+.sheet2 { left: 9%; right: 4%; top: 36px; height: 50%; background: #fffdf8; transform: rotate(1.6deg); }
+.folder:hover .sheet1 { translate: 0 -10px; }
+.folder:hover .sheet2 { translate: 0 -6px; }
+.peek { position: absolute; inset: 0; transition: translate var(--t-base) var(--ease-out); }
+.folder:hover .peek { translate: 0 -12px; }
+.front { position: absolute; left: 0; right: 0; top: 56px; bottom: 0; border-radius: 3px 3px 6px 6px; box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 -1px 4px rgba(31,27,24,.10); }
+.caption { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; margin-top: 14px; padding: 0 4px; gap: 4px 12px; }
+.title { font-family: var(--font-serif), serif; line-height: 1; font-size: 38px; }
+.titleSm { font-size: 24px; }
+@media (max-width: 720px) { .title { font-size: 24px; } .caption { margin-top: 10px; } }
+.count { font-family: var(--font-mono), monospace; letter-spacing: .16em; font-weight: 700; white-space: nowrap; }
+
+.sm .tab { height: 28px; }
+.sm .front { top: 44px; }

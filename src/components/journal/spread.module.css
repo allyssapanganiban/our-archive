@@ -1,0 +1,35 @@
+/* The two-page journal spread. Page contents are in page px (640 wide) and scaled to fit. */
+.spread { align-items: stretch; overflow: hidden; }
+.pageSlot { position: relative; flex: 1 1 320px; min-width: 0; overflow: hidden; }
+.page { position: absolute; left: 0; top: 0; width: 640px; transform-origin: top left; }
+.header { position: absolute; left: 56px; right: 56px; top: 30px; display: flex; justify-content: space-between; gap: 12px; font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: .18em; font-weight: 700; pointer-events: none; }
+.title { position: absolute; margin: 0; line-height: 1; font-weight: 400; pointer-events: none; }
+.item { position: absolute; transform-origin: top left; }
+
+.diary { display: block; font-family: var(--font-hand), cursive; font-size: 26px; line-height: 34px; color: var(--ink); }
+.diary p { margin: 0; }
+.diary p + p { margin-top: 34px; }
+.slip { display: block; width: 100%; margin: 0; font-family: var(--font-hand), cursive; font-size: 25px; line-height: 1.15; white-space: pre-wrap; }
+/* while editing: the same writing, in a box you can type in */
+.editable { border: 1.5px dashed rgba(59,96,121,.35); border-radius: 3px; background: transparent; padding: 0 4px; resize: none; overflow: hidden; white-space: pre-wrap; }
+textarea.diary { white-space: pre-wrap; }
+
+.cassetteRow { display: flex; align-items: flex-start; gap: 20px; }
+.cassetteRow ol { min-width: 180px; }
+.placeholder { margin: 0; padding: 14px 18px; border: 1.5px dashed rgba(122,62,46,.45); border-radius: 6px; font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: .08em; color: var(--kraft); background: rgba(253,251,246,.6); white-space: nowrap; }
+.dropZone { border: 2px dashed rgba(122,62,46,.45); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--kraft); background: rgba(253,251,246,.6); cursor: pointer; }
+.heart { display: flex; width: 48px; height: 48px; border-radius: 50%; background: var(--pink); align-items: center; justify-content: center; box-shadow: 0 0 0 3px var(--white), var(--shadow-rest); }
+
+@media (max-width: 720px) {
+  .pageSlot { flex-basis: 100%; }
+}
+
+/* a blank polaroid waiting for a photo (editor) */
+.emptyPolaroid { position: relative; background: var(--white); box-shadow: var(--shadow-rest); }
+.emptyPhoto {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; width: 100%; aspect-ratio: 1;
+  background: #ece5d8; border: 1.5px dashed rgba(122,62,46,.45); color: var(--kraft); cursor: pointer; text-align: center;
+}
+.emptyPhoto:hover { background: #e6dccb; }
+.emptyPhoto:focus-within { outline: 2px solid var(--kraft); outline-offset: 2px; }
+.emptyCaption { text-align: center; line-height: 1.1; color: var(--ink); }

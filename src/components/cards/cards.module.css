@@ -1,0 +1,86 @@
+/* Trading cards are laid out in em, so one `font-size` (width / 25) scales the whole card. */
+
+.card {
+  position: relative;
+  width: 25em;
+  height: 35em;
+  border-radius: 1.2em;
+  font-family: var(--font-card), Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  overflow: hidden;
+  box-shadow: 0 .1em .2em rgba(0,0,0,.18), 0 .6em 1.4em rgba(31,27,24,.22);
+}
+.frameStandard { padding: .85em; background: linear-gradient(160deg, #f4de9c, #e2c06a 45%, #f1d892); }
+.framePrism { padding: .85em; background: var(--prism); }
+.frameStar { padding: .55em; background: var(--holo); }
+
+.inner { position: relative; height: 100%; border-radius: .55em; padding: .7em .9em .6em; display: flex; flex-direction: column; gap: .42em; }
+.row { display: flex; align-items: center; gap: .5em; }
+.stage { font-size: .72em; font-weight: 800; letter-spacing: .1em; padding: .15em .5em; border-radius: .3em; background: rgba(255,255,255,.65); }
+.name { font-weight: 800; font-size: 1.45em; letter-spacing: -.01em; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hpLabel { font-weight: 800; font-size: .8em; }
+.hp { font-weight: 800; font-size: 1.5em; margin-left: -.25em; }
+
+.artWindow { position: relative; height: 13.6em; border: .32em solid #e4cb84; box-shadow: inset 0 0 0 .1em rgba(0,0,0,.15); overflow: hidden; background: #cfc6b8; flex: none; }
+.prismWindow { clip-path: polygon(6% 0, 94% 0, 100% 8%, 100% 92%, 94% 100%, 6% 100%, 0 92%, 0 8%); }
+.artWindow > img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; }
+.avatars { position: absolute; left: 0; right: 0; bottom: .9em; display: flex; justify-content: center; gap: .5em; align-items: flex-end; }
+
+.infoStrip { text-align: center; font-style: italic; font-size: .78em; padding: .15em 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.7), transparent); }
+.moveLabel { font-size: .7em; font-weight: 800; letter-spacing: .06em; }
+.move { font-weight: 800; font-size: 1.05em; }
+.attackName { font-weight: 800; font-size: 1.3em; flex: 1; margin-left: .2em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.damage { font-weight: 800; font-size: 1.4em; }
+.attackText { font-size: .8em; line-height: 1.3; flex: 1; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); font-size: .66em; font-weight: 600; border-top: .1em solid rgba(31,27,24,.25); padding-top: .35em; }
+.stats span:nth-child(2) { text-align: center; }
+.stats span:nth-child(3) { text-align: right; }
+.flavor { font-size: .68em; font-style: italic; line-height: 1.25; background: rgba(255,255,255,.5); padding: .35em .5em; border-radius: .25em; }
+.foot { display: flex; justify-content: space-between; align-items: center; font-size: .6em; font-weight: 600; color: rgba(31,27,24,.75); }
+.corner { display: inline-flex; width: 1.6em; height: 1.6em; border-radius: 50%; background: var(--ink); align-items: center; justify-content: center; }
+
+.prismBadge {
+  position: absolute; right: .9em; top: -.2em; font-weight: 800; font-size: .85em; letter-spacing: .08em; padding: .15em .6em; border-radius: .3em;
+  background: conic-gradient(from 0deg, #f6b6d2, #bfe3f8, #fcefae, #c9b6f2, #f6b6d2); box-shadow: 0 .1em .2em rgba(0,0,0,.25);
+}
+
+.energy { display: inline-flex; border-radius: 50%; align-items: center; justify-content: center; flex: none; box-shadow: inset 0 -.12em 0 rgba(0,0,0,.18), 0 0 0 .1em rgba(255,255,255,.7); }
+
+/* star full-art */
+.starArt { position: relative; height: 100%; border-radius: .8em; overflow: hidden; }
+.starArt > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.starTop { position: absolute; left: 0; right: 0; top: 0; padding: .7em .9em; display: flex; align-items: center; gap: .45em; background: linear-gradient(rgba(255,248,230,.85), rgba(255,248,230,0)); }
+.starStage { font-size: .7em; font-weight: 800; letter-spacing: .1em; padding: .15em .5em; border-radius: .3em; background: #f2d27a; }
+.starBadge { display: inline-flex; width: 1.7em; height: 1.7em; border-radius: 50%; background: conic-gradient(#f2d27a, #fff1c2, #e5b85c, #f2d27a); align-items: center; justify-content: center; font-weight: 800; font-size: .9em; }
+.starPanel {
+  position: absolute; left: .6em; right: .6em; bottom: .6em; border-radius: .6em; padding: .7em .9em .6em; background: rgba(253,248,236,.9);
+  box-shadow: 0 0 0 .22em #eac873, 0 0 0 .38em rgba(255,255,255,.6); display: flex; flex-direction: column; gap: .35em;
+}
+.subtitle { font-style: italic; font-size: .82em; text-align: center; color: var(--muted); }
+
+/* holo sheen: position + strength come from --hx --hy --ho (set by <HoloTilt>) */
+.holo {
+  position: absolute; inset: 0; border-radius: 1.2em; pointer-events: none; mix-blend-mode: color-dodge;
+  background: linear-gradient(115deg, transparent 18%, rgba(255,110,190,.55) 34%, rgba(110,220,255,.55) 45%, rgba(255,236,130,.55) 56%, rgba(170,120,255,.45) 64%, transparent 78%);
+  background-size: 260% 260%;
+  background-position: var(--hx, 30%) var(--hy, 30%);
+  opacity: var(--ho, .35);
+  transition: opacity var(--t-base);
+}
+
+.tilt {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 160ms ease-out;
+  will-change: transform;
+}
+
+.sleeve { position: relative; background: rgba(253,251,246,.22); border: 1px solid rgba(253,251,246,.6); box-shadow: 0 2px 6px rgba(31,27,24,.25); }
+.sleeve::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(125deg, rgba(255,255,255,.35) 0%, rgba(255,255,255,0) 28%, rgba(255,255,255,0) 70%, rgba(255,255,255,.18) 100%);
+}
+
+.pocket { position: absolute; display: block; z-index: 3; text-decoration: none; }
+.pocketFlap { position: absolute; left: 0; right: 0; bottom: 0; height: 58%; clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 100%); box-shadow: 0 -2px 6px rgba(0,0,0,.2); }
+.pocketLabel { position: absolute; left: 16px; bottom: 14px; font-family: var(--font-hand), cursive; font-size: 22px; font-weight: 600; color: var(--cream); }
+.pocketNo { position: absolute; right: 12px; bottom: 16px; font-family: var(--font-mono), monospace; font-size: 10px; letter-spacing: .16em; color: var(--cream-muted); }

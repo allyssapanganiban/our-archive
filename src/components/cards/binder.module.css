@@ -1,0 +1,49 @@
+.filters { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; margin-top: 30px; }
+.filterLabel { font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: .18em; color: var(--cream-muted); margin-right: 4px; }
+.pill {
+  min-height: 36px; padding: 4px 16px; border: 1.25px solid var(--cream); border-radius: 999px; background: transparent; color: var(--cream);
+  font-family: var(--font-mono), monospace; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+  transition: background-color var(--t-fast);
+}
+.pill:hover { background: rgba(243,238,228,.16); }
+.pill[aria-pressed="true"] { background: rgba(243,238,228,.22); }
+
+.layout { display: flex; flex-wrap: wrap; gap: 56px; margin-top: 44px; align-items: flex-start; justify-content: center; }
+.binder {
+  flex: 1 1 640px; max-width: 720px; min-width: 0; position: relative; padding: 34px 30px 34px 66px; border-radius: 14px;
+  background: var(--binder); box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 18px 40px rgba(0,0,0,.35);
+}
+.ring { position: absolute; left: 14px; width: 22px; height: 22px; border-radius: 50%; background: var(--kraft-deep); box-shadow: inset 0 2px 3px rgba(0,0,0,.5), 0 0 0 4px #b9bcc0; }
+.pockets { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px 18px; }
+.pockets > li { display: flex; justify-content: center; transition: opacity 200ms; }
+.pocket { position: relative; border: none; background: none; padding: 0; cursor: pointer; }
+.selectedRing { position: absolute; inset: -8px; border: 2px dashed var(--cream); border-radius: 14px; }
+.makeNext {
+  width: 176px; height: 242px; border-radius: 12px; border: 1.5px dashed rgba(243,238,228,.7); display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 6px; text-decoration: none; color: var(--cream); background: rgba(253,251,246,.06); text-align: center; padding: 0 10px;
+}
+.makeNext:hover { color: var(--cream); background: rgba(253,251,246,.12); }
+.emptySleeve { display: block; width: 176px; height: 242px; border-radius: 12px; border: 1px solid rgba(243,238,228,.35); background: rgba(253,251,246,.05); }
+.pager { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; color: var(--cream); font-family: var(--font-mono), monospace; font-size: 13px; }
+.pager button { min-height: 40px; background: none; border: none; color: var(--cream); text-decoration: underline; cursor: pointer; }
+.pager button:disabled { opacity: .4; cursor: default; }
+
+.detail { flex: 1 1 520px; max-width: 600px; min-width: 0; position: relative; min-height: 600px; }
+.indexCard { position: absolute; left: 290px; top: 120px; width: 290px; filter: var(--shadow-drop); transform: rotate(3deg); z-index: 3; }
+.indexDate { font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: .18em; margin: 0; color: var(--pink-deep); font-weight: 700; }
+.indexMeta { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .14em; margin: 0 0 10px; color: var(--muted); }
+.memoryLink { display: flex; align-items: center; gap: 8px; min-height: 44px; font-family: var(--font-mono), monospace; font-size: 14px; color: var(--ink); }
+.inkPill {
+  display: inline-flex; align-items: center; min-height: 36px; padding: 4px 14px; border: 1.25px solid var(--ink); border-radius: 999px; background: transparent;
+  font-family: var(--font-mono), monospace; font-size: 13px; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+}
+.hint { font-size: 22px; color: var(--cream-muted); margin: 22px 0 0 20px; transform: rotate(-2deg); }
+
+@media (max-width: 720px) {
+  .binder { padding: 24px 14px 24px 44px; }
+  .ring { left: 8px; }
+  .pockets { gap: 16px 8px; }
+  .indexCard { position: relative; left: 0; top: 0; margin-top: -40px; width: min(320px, 100%); }
+  .detail { min-height: 0; }
+}
+@media (pointer: coarse) { .hint { display: none; } }

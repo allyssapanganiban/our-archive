@@ -1,0 +1,127 @@
+/* ---------------------------------------------------------------
+   Our Scrapbook · design tokens (mirrors src/design/tokens.ts)
+   --------------------------------------------------------------- */
+:root {
+  --cream: #f3eee4;
+  --paper: #fbf8f1;
+  --white: #fdfbf6;
+  --kraft: #7a3e2e;
+  --kraft-deep: #5e2e22;
+  --binder: #4a2a22;
+  --manila: #e8cf9e;
+  --manila-deep: #d8b97e;
+  --ink: #1f1b18;
+  --muted: #5e554c;
+  --cream-muted: #eadccb;
+
+  --pink: #d8a7a9;     --pink-deep: #94474f;
+  --sage: #a9b89a;     --sage-deep: #4f6145;
+  --sky: #a9c4d6;      --sky-deep: #3b6079;
+  --marigold: #e3a73f; --marigold-deep: #80520c;
+
+  --ink-allyssa: var(--pink-deep);
+  --ink-justin: var(--sky-deep);
+
+  --holo: conic-gradient(from 160deg, #f2d27a, #fff1c2, #e5b85c, #f6b6d2, #bfe3f8, #c9b6f2, #f2d27a);
+  --prism: conic-gradient(from 210deg, #f6b6d2, #bfe3f8, #fcefae, #c9b6f2, #b9f0d8, #f6b6d2);
+
+  --shadow-rest: 0 1px 1px rgba(31,27,24,.10), 0 3px 6px rgba(31,27,24,.10), 0 10px 22px rgba(31,27,24,.10);
+  --shadow-lift: 0 2px 2px rgba(31,27,24,.10), 0 10px 18px rgba(31,27,24,.14), 0 26px 44px rgba(31,27,24,.16);
+  --shadow-page: 0 20px 44px rgba(0,0,0,.28);
+  --shadow-drop: drop-shadow(0 1px 1px rgba(31,27,24,.16)) drop-shadow(0 5px 9px rgba(31,27,24,.14));
+
+  --t-fast: 150ms;
+  --t-base: 250ms;
+  --t-slow: 400ms;
+  --ease-out: cubic-bezier(.2,.7,.2,1);
+  --ease-bounce: cubic-bezier(.3,1.45,.5,1);
+
+  --page-pad-x: clamp(18px, 4vw, 56px);
+  --wrap: 1320px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--cream) url(/textures/grain.png);
+  color: var(--ink);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+a:hover { color: var(--kraft); }
+img { max-width: 100%; }
+:focus-visible { outline: 2px dashed var(--kraft); outline-offset: 3px; }
+button { font: inherit; }
+
+/* ---------- paper surfaces ---------- */
+.tx-cream  { background: url(/textures/grain.png), var(--cream); }
+.tx-paper  { background: url(/textures/grain.png), var(--paper); }
+.tx-kraft  { background: url(/textures/fiber.png), url(/textures/grain.png), var(--kraft); color: var(--cream); }
+.tx-manila { background: url(/textures/grain.png), var(--manila); }
+.tx-manila-deep { background: url(/textures/grain.png), var(--manila-deep); }
+.tx-grid {
+  background:
+    url(/textures/grain.png),
+    linear-gradient(rgba(59,96,121,.15) 1px, transparent 1px) 0 0 / 22px 22px,
+    linear-gradient(90deg, rgba(59,96,121,.15) 1px, transparent 1px) 0 0 / 22px 22px,
+    var(--paper);
+}
+.tx-lined {
+  background:
+    url(/textures/grain.png),
+    repeating-linear-gradient(to bottom, transparent 0 33px, rgba(59,96,121,.22) 33px 34px),
+    var(--paper);
+}
+.tx-mat {
+  background:
+    url(/textures/grain.png),
+    linear-gradient(rgba(255,255,255,.18) 1px, transparent 1px) 0 0 / 20px 20px,
+    linear-gradient(90deg, rgba(255,255,255,.18) 1px, transparent 1px) 0 0 / 20px 20px,
+    #6f8466;
+}
+
+/* ---------- type helpers ---------- */
+.display { font-family: var(--font-serif), Georgia, serif; font-weight: 400; }
+.hand    { font-family: var(--font-hand), cursive; }
+.mono    { font-family: var(--font-mono), ui-monospace, monospace; }
+.label   { font-family: var(--font-mono), monospace; font-size: 13px; letter-spacing: .2em; font-weight: 700; text-transform: uppercase; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- motion ---------- */
+/* Anything collage-placed sets --r (rotation). Hover eases it toward 0 and lifts it. */
+.lift {
+  transform: rotate(var(--r, 0deg));
+  transition: transform var(--t-base) var(--ease-out), box-shadow var(--t-base), filter var(--t-base);
+}
+.lift:hover, .lift:focus-visible { transform: translateY(-6px) rotate(0deg); }
+.lift-shadow:hover, .lift-shadow:focus-visible { box-shadow: var(--shadow-lift); }
+
+.drop-in { animation: drop-in 380ms var(--ease-bounce) both; }
+@keyframes drop-in {
+  0% { opacity: 0; translate: 0 -16px; scale: 1.05; }
+  100% { opacity: 1; translate: 0 0; scale: 1; }
+}
+.slide-out { animation: slide-out 320ms var(--ease-out) both; }
+@keyframes slide-out {
+  0% { opacity: 0; translate: 0 24px; }
+  100% { opacity: 1; translate: 0 0; }
+}
+.page-turn { animation: page-turn var(--t-slow) var(--ease-out) both; transform-origin: left center; }
+@keyframes page-turn {
+  0% { opacity: .2; transform: perspective(1600px) rotateY(-14deg); }
+  100% { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* ---------- layout ---------- */
+.page { position: relative; min-height: 100vh; padding: 28px var(--page-pad-x) 80px; overflow: hidden; }
+.wrap { max-width: var(--wrap); margin: 0 auto; position: relative; }
+
+@media (max-width: 720px) {
+  /* room for the bottom tab bar */
+  .page { padding-bottom: 130px; }
+}

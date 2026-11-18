@@ -1,0 +1,154 @@
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 36px; padding-bottom: 22px; border-bottom: 1.25px dashed rgba(31,27,24,.3); }
+.titleInput { flex: 1 1 280px; min-width: 0; min-height: 56px; border: none; border-bottom: 1.25px solid var(--ink); background: transparent; font-family: var(--font-serif), serif; font-size: 42px; color: var(--ink); padding: 0; }
+.inline { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: .14em; }
+.input { min-height: 44px; border: 1.25px solid var(--ink); border-radius: 999px; background: transparent; padding: 4px 14px; font-family: var(--font-mono), monospace; font-size: 14px; color: var(--ink); max-width: 100%; }
+.saveStamp {
+  --r: -1.5deg; min-height: 52px; padding: 6px 24px; border: 3px double var(--pink-deep); border-radius: 6px; background: var(--white); color: var(--pink-deep);
+  font-family: var(--font-mono), monospace; font-weight: 700; font-size: 15px; letter-spacing: .18em; cursor: pointer; box-shadow: var(--shadow-rest);
+}
+
+.layout { display: flex; flex-wrap: wrap; gap: 36px; margin-top: 30px; align-items: flex-start; }
+.templates { flex: 0 1 210px; min-width: 180px; display: flex; flex-direction: column; }
+.groupLabel, .groupLabelLight { display: block; font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: .2em; font-weight: 700; margin: 0 0 10px; }
+.groupLabelLight { color: var(--cream); }
+.templateList { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 18px; }
+.templateButton { width: 100%; border: none; background: none; padding: 0; cursor: pointer; text-align: left; color: var(--ink); }
+.templateThumb { position: relative; display: block; width: 100%; aspect-ratio: 1280 / 820; border-radius: 4px; box-shadow: var(--shadow-rest); overflow: hidden; }
+.thumbPage { position: absolute; top: 0; bottom: 0; left: 0; width: 50%; }
+.thumbPage + .thumbPage { box-shadow: inset 4px 0 6px -4px rgba(60,40,20,.35); }
+.templateButton[aria-pressed="true"] .templateThumb { box-shadow: 0 0 0 3px var(--ink), var(--shadow-rest); }
+.thumbItem { position: absolute; width: 16%; aspect-ratio: 1 / 1.15; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.2); transform-origin: top left; }
+.thumbItem[data-kind="washi"] { aspect-ratio: 5 / 1; background: rgba(216,167,169,.85); }
+.thumbItem[data-kind="note"] { aspect-ratio: 6 / 1; width: 30%; background: rgba(31,27,24,.35); box-shadow: none; }
+.thumbItem[data-kind="ticket"] { aspect-ratio: 2.4 / 1; width: 36%; background: #f4e3c3; }
+.thumbItem[data-kind="cassette"] { aspect-ratio: 1.6 / 1; width: 26%; background: #2b2a2e; border-radius: 3px; }
+.thumbItem[data-kind="postmark"] { aspect-ratio: 1; border-radius: 50%; background: transparent; border: 2px solid rgba(31,27,24,.5); box-shadow: none; }
+.check { display: flex; align-items: center; gap: 10px; min-height: 44px; margin-top: 20px; font-family: var(--font-mono), monospace; font-size: 13px; }
+.check input { width: 20px; height: 20px; accent-color: var(--kraft); }
+.inkButton { min-height: 44px; padding: 4px 16px; border-radius: 999px; border: 1.25px solid var(--ink); background: transparent; font-family: var(--font-hand), cursive; font-size: 22px; font-weight: 700; cursor: pointer; }
+.inkButton[aria-pressed="true"] { background: var(--pink); }
+
+.pageColumn { flex: 3 1 720px; min-width: 0; }
+.editPage { touch-action: none; user-select: none; }
+.layoutButtons { display: flex; flex-wrap: wrap; gap: 8px; }
+.layoutButton { min-height: 40px; padding: 4px 14px; border: 1.25px solid var(--cream); border-radius: 999px; background: transparent; color: var(--cream); font-family: var(--font-hand), cursive; font-size: 20px; cursor: pointer; }
+.layoutButton[aria-pressed="true"] { background: var(--cream); color: var(--ink); }
+.page { box-shadow: 0 18px 40px rgba(31,27,24,.22), 0 0 0 1px rgba(31,27,24,.06); overflow: hidden; touch-action: none; user-select: none; }
+.pageHead { position: absolute; left: 6%; right: 6%; top: 3.4%; display: flex; justify-content: space-between; font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: .18em; font-weight: 700; pointer-events: none; }
+.pageTitle { position: absolute; left: 6%; top: 7.5%; font-size: clamp(32px, 6vw, 54px); line-height: 1; pointer-events: none; }
+.item { position: absolute; cursor: grab; outline-offset: 8px; transform-origin: top left; }
+.item:active { cursor: grabbing; }
+.selected { outline: 1.5px dashed var(--sky-deep); }
+.badge { position: absolute; left: calc(100% + 10px); top: -6px; font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .1em; background: var(--sky-deep); color: #fff; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
+.dropZone { width: 220px; height: 180px; border: 2px dashed rgba(122,62,46,.45); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--kraft); background: rgba(253,251,246,.5); cursor: pointer; }
+.note { width: 240px; border: 1.5px dashed rgba(59,96,121,.4); background: transparent; font-family: var(--font-hand), cursive; font-size: 24px; line-height: 32px; padding: 8px 12px; resize: none; }
+.heart { display: flex; width: 48px; height: 48px; border-radius: 50%; background: var(--pink); align-items: center; justify-content: center; box-shadow: 0 0 0 3px var(--white), var(--shadow-rest); }
+.details { margin: 30px 0 0; padding: 26px clamp(18px, 4vw, 40px) 30px; background-color: #fdfbf6; box-shadow: var(--shadow-rest); border-radius: 3px; }
+.helpLegacy { text-align: center; font-family: var(--font-mono), monospace; font-size: 12px; color: var(--muted); margin: 14px 0 0; }
+
+.drawer { flex: 1 1 260px; max-width: 300px; position: sticky; top: 16px; border-radius: 12px; padding: 20px 18px 24px; box-shadow: 0 14px 30px rgba(31,27,24,.25); }
+.drawerGrid { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.drawerItem {
+  width: 100%; min-height: 92px; border: none; border-radius: 8px; background: rgba(253,251,246,.08); display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 8px; cursor: pointer; padding: 8px 4px; color: var(--cream);
+}
+.drawerItem:hover { background: rgba(253,251,246,.16); }
+.drawerItem:focus-within { outline: 2px dashed var(--cream); outline-offset: 2px; }
+.drawerLabel { font-family: var(--font-mono), monospace; font-size: 10px; letter-spacing: .1em; }
+.addPhoto { display: flex; width: 52px; height: 52px; border: 1.5px dashed var(--cream); align-items: center; justify-content: center; font-family: var(--font-hand), cursive; font-size: 30px; }
+.preview { display: block; width: 50px; height: 40px; background: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.preview[data-kind="stamp"] { width: 40px; height: 50px; background: url(/scenes/lake.svg) center / cover; outline: 3px dotted var(--white); }
+.preview[data-kind="postmark"] { width: 48px; height: 48px; border-radius: 50%; background: transparent; border: 2px solid var(--cream); box-shadow: none; }
+.preview[data-kind="ticket"] { width: 64px; height: 28px; background: #f4e3c3; }
+.preview[data-kind="cassette"] { width: 60px; height: 38px; background: #2b2a2e; border-radius: 5px; box-shadow: inset 0 0 0 5px #2b2a2e, inset 0 0 0 22px var(--cream); }
+.preview[data-kind="heart"] { width: 44px; height: 44px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 0 3px var(--white); }
+.preview[data-kind="note"] { width: 56px; height: 44px; background: #fffdf8; transform: rotate(-3deg); }
+
+.props { margin-top: 22px; padding-top: 18px; border-top: 1.25px dashed rgba(243,238,228,.4); display: flex; flex-direction: column; gap: 14px; }
+.slider { display: flex; flex-direction: column; gap: 6px; font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: .14em; color: var(--cream); }
+.slider > span { display: flex; justify-content: space-between; }
+.slider input[type="range"] { accent-color: var(--marigold); min-height: 28px; }
+.lightInput { min-height: 40px; border: 1.25px solid var(--cream); border-radius: 8px; background: transparent; color: #fdfbf6; padding: 4px 10px; font-family: var(--font-mono), monospace; font-size: 13px; }
+.propButtons { display: flex; flex-wrap: wrap; gap: 8px; }
+.propButtons button { min-height: 40px; padding: 4px 12px; border: 1.25px solid var(--cream); border-radius: 999px; background: transparent; color: var(--cream); font-family: var(--font-mono), monospace; font-size: 13px; cursor: pointer; }
+.propButtons button:hover { background: rgba(243,238,228,.16); }
+.cancel { display: inline-block; margin-top: 22px; font-family: var(--font-mono), monospace; font-size: 13px; color: var(--cream-muted); }
+
+@media (max-width: 720px) {
+  .templates, .drawer { max-width: none; }
+  .templateList { flex-direction: row; overflow-x: auto; }
+  .templateList > li { flex: 0 0 140px; }
+  .templateThumb { height: 110px; }
+  .note { width: 180px; font-size: 21px; }
+  .dropZone { width: 170px; height: 140px; }
+}
+/* Inside the editor, pictures and links are things you move, not things the browser drags or opens. */
+.editPage img { pointer-events: none; -webkit-user-drag: none; user-select: none; }
+.editPage a { pointer-events: none; }
+
+/* Light text on the kraft panel: suggestions show in near-white so they stay readable. */
+.lightInput::placeholder { color: rgba(253,251,246,.82); opacity: 1; }
+.lightInput::-webkit-calendar-picker-indicator { filter: invert(1); }
+
+/* ---- editor layout: options row on top, then the spread and the drawer side by side, bottoms aligned ---- */
+/* Options, spread + drawer, and page details all share the same full width, so their edges line up. */
+.optionsRow {
+  display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 18px 112px;
+  margin-top: 16px; padding-bottom: 14px; border-bottom: 1.25px dashed rgba(31,27,24,.25);
+}
+.optionGroup { display: flex; flex-direction: column; gap: 4px; }
+.templateRow { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 14px; }
+.templateRow .templateButton { width: 132px; }
+.workArea { display: grid; grid-template-columns: minmax(0, 1fr) 264px; gap: 24px; margin-top: 18px; align-items: stretch; }
+.workArea .pageColumn { min-width: 0; }
+/* The drawer is exactly as tall as the spread; its contents scroll inside it. */
+.workArea .drawer { position: relative; max-width: none; padding: 0; top: auto; min-height: 420px; }
+.drawerScroll { position: absolute; inset: 0; overflow-y: auto; padding: 20px 16px 22px; overscroll-behavior: contain; }
+.drawerScroll .drawerGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+/* notes are dragged by this grip (clicking inside a note types in it) */
+.grip {
+  position: absolute; left: 0; top: -30px; display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 999px;
+  background: var(--sky-deep); color: #fff; font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: .08em; cursor: grab; opacity: .55; white-space: nowrap;
+}
+.item:hover .grip, .selected .grip { opacity: 1; }
+@media (max-width: 900px) {
+  .workArea { grid-template-columns: minmax(0, 1fr); }
+  .workArea .drawer { min-height: 0; }
+  .drawerScroll { position: static; }
+}
+
+.workArea article { margin-top: 0; box-shadow: 0 14px 30px rgba(31,27,24,.22), 0 0 0 1px rgba(31,27,24,.05); }
+.workArea .drawer { box-shadow: 0 14px 30px rgba(31,27,24,.24); }
+
+/* Tip under the spread: clear of the spread's shadow, in dark ink so it reads easily. */
+.help { margin: 12px auto 0; max-width: 100%; color: var(--ink); font-family: var(--font-mono), monospace; font-size: 13px; line-height: 1.5; text-align: center; }
+
+/* ---- page details: an even two-column grid; every field is label · hint · box, so boxes line up ---- */
+.detailsTitle { margin: 0 0 18px; font-family: var(--font-mono), monospace; font-size: 14px; letter-spacing: .22em; font-weight: 700; }
+.detailsGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 32px; align-items: start; }
+.dField { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.dField > input, .dField > select, .dField > textarea { width: 100%; margin-top: 4px; }
+.dLabel { font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: .2em; font-weight: 700; }
+.dHint { font-family: var(--font-mono), monospace; font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dTextarea { min-height: 150px; resize: vertical; }
+.checkItems { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.checkRow { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; align-items: center; gap: 10px; }
+.checkBox { width: 20px; height: 20px; accent-color: var(--kraft); }
+@media (max-width: 760px) {
+  .detailsGrid { grid-template-columns: minmax(0, 1fr); }
+  .dHint { white-space: normal; }
+}
+
+/* a blank polaroid with a picture being dragged over it */
+.dropTarget { outline: 3px dashed var(--kraft); outline-offset: 6px; }
+.dropTarget label { background: #e2d4bd; }
+
+/* stamps in the drawer, and the picture picker for a selected stamp */
+.stampGrid { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.stampChoices { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.stampChoice { display: flex; align-items: center; justify-content: center; min-height: 52px; padding: 3px; border: 1.25px solid transparent; border-radius: 6px; background: rgba(253,251,246,.08); cursor: pointer; }
+.stampChoice[aria-pressed="true"] { border-color: var(--cream); background: rgba(253,251,246,.2); }
+
+/* a picture that couldn't be used: say why, right under the spread */
+.photoMsg { margin: 14px auto 0; width: fit-content; max-width: 100%; padding: 8px 14px; border-radius: 4px; background: #fdfbf6; box-shadow: var(--shadow-rest); color: var(--pink-deep); font-family: var(--font-hand), cursive; font-size: 21px; }
+.photoMsg button { margin-left: 10px; min-height: 32px; padding: 2px 12px; border: 1.25px solid currentColor; border-radius: 999px; background: none; color: inherit; font-family: var(--font-mono), monospace; font-size: 12px; cursor: pointer; }

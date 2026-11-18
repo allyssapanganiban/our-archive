@@ -1,0 +1,38 @@
+/* Folder-open choreography. Stage comes from data-stage on .overlay:
+   pre → lift → open → pour → fill → (navigate). --k scales every duration. */
+
+.overlay { position: fixed; inset: 0; z-index: 1000; pointer-events: none; }
+
+.backdrop { position: absolute; inset: 0; background: rgba(243,238,228,0); backdrop-filter: blur(0); transition: background calc(380ms * var(--k)) ease, backdrop-filter calc(380ms * var(--k)) ease; }
+.overlay:not([data-stage="pre"]) .backdrop { background: rgba(243,238,228,.8); backdrop-filter: blur(2px); }
+
+/* the lifted copy of the folder */
+.clone { position: absolute; transform-origin: 50% 50%; transition: transform calc(460ms * var(--k)) cubic-bezier(.2,.8,.2,1); }
+.overlay[data-stage="pre"] .clone { transition: none; }
+.clone :global(.lift) { transform: none !important; }
+.clone [data-part="body"] { perspective: 1100px; }
+.clone [data-part="front"] { transform-origin: 50% 100%; transition: transform calc(420ms * var(--k)) cubic-bezier(.3,.75,.3,1), filter calc(420ms * var(--k)); }
+.clone [data-part="tab"], .clone [data-part="sheet1"], .clone [data-part="sheet2"] { transition: translate calc(380ms * var(--k)) cubic-bezier(.2,.8,.2,1); }
+/* perspective() lives in the transform because the front's parent is the folder's scale-to-fit box, not the body */
+.overlay:is([data-stage="open"], [data-stage="pour"], [data-stage="fill"]) [data-part="front"] { transform: perspective(1100px) rotateX(-66deg); filter: brightness(.9); }
+.overlay:is([data-stage="open"], [data-stage="pour"], [data-stage="fill"]) [data-part="tab"] { translate: 0 -8px; }
+.overlay:is([data-stage="open"], [data-stage="pour"], [data-stage="fill"]) [data-part="sheet1"] { translate: 0 -24px; }
+.overlay:is([data-stage="open"], [data-stage="pour"], [data-stage="fill"]) [data-part="sheet2"] { translate: 0 -14px; }
+
+/* poured items: X and Y on separate wrappers with different easing = a tossed arc */
+.px { position: absolute; transform: translateX(0); transition: transform calc(680ms * var(--k)) cubic-bezier(.22,.9,.35,1) calc(var(--i) * 75ms * var(--k)); }
+.py { transform: translateY(0); transition: transform calc(680ms * var(--k)) cubic-bezier(.25,1.45,.5,1) calc(var(--i) * 75ms * var(--k)); }
+.pi {
+  transform: translate(-50%, -50%) rotate(0deg) scale(.22); opacity: 0;
+  transition: transform calc(680ms * var(--k)) cubic-bezier(.2,1.35,.4,1) calc(var(--i) * 75ms * var(--k)), opacity calc(140ms * var(--k)) linear calc(var(--i) * 75ms * var(--k));
+}
+.overlay:is([data-stage="pour"], [data-stage="fill"]) .px { transform: translateX(var(--tx)); }
+.overlay:is([data-stage="pour"], [data-stage="fill"]) .py { transform: translateY(var(--ty)); }
+.overlay:is([data-stage="pour"], [data-stage="fill"]) .pi { transform: translate(-50%, -50%) rotate(var(--tr)) scale(1); opacity: 1; }
+
+/* the next page fills in from the folder's mouth (kraft, like the folder pages) */
+.fill {
+  position: absolute; inset: 0; background: url(/textures/fiber.png), url(/textures/grain.png), var(--kraft);
+  clip-path: circle(0px at var(--mx) var(--my)); transition: clip-path calc(650ms * var(--k)) cubic-bezier(.65,0,.25,1);
+}
+.overlay[data-stage="fill"] .fill { clip-path: circle(150vmax at var(--mx) var(--my)); }
